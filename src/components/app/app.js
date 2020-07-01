@@ -26,13 +26,15 @@ export default class App extends Component {
                 { label: "Going to learn React", important: false, like: false, id: 1 },
                 { label: "I'd like to eat", important: false, like: false, id: 2 },
                 { label: "Need to buy paper for printer", important: false, like: false, id: 3 },
-            ]
+            ],
+            term: ""
 
         }
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
         this.onToggleImportant = this.onToggleImportant.bind(this);
         this.onToggleLiked = this.onToggleLiked.bind(this);
+        this.onUpdateSearch = this.onUpdateSearch.bind(this);
         this.maxId = 4;
     }
 
@@ -92,23 +94,36 @@ export default class App extends Component {
         });
     }
 
+    searchPost(items, term){
+        if (term.length === 0){
+            return items;
+        }
 
+        return items.filter((item)=> {  // если мы не найдем то что ввел пользователь в объекте в св-ве label то нам вернется "-1"
+            return item.label.indexOf(term) > -1   // поэтому мы возвращаем все что больше -1.
+        });
+    }
+
+    onUpdateSearch(term){
+        this.setState({term});
+    }
     render() {
-        const { data } = this.state;
+        const { data, term } = this.state;
         const liked = data.filter(item => item.like).length;
         const allPosts = data.length;
-
+        const visiblePosts = this.searchPost(data, term);
         return (
             <AppBlock>
                 <AppHeader
                     liked={liked}
                     allPosts={allPosts} />
                 <div className="search-panel d-flex">
-                    <SearchPanel />
+                    <SearchPanel 
+                    onUpdateSearch = {this.onUpdateSearch}/>
                     <PostStatusFilter />
                 </div>
                 <PostList
-                    posts={this.state.data}  // пропс откуда берем наш список дел //пропс onDelete который вызывает одноименную ф-цию
+                    posts={visiblePosts}  // пропс откуда берем наш список дел //пропс onDelete который вызывает одноименную ф-цию
                     onDelete={this.deleteItem}
                     onToggleImportant={this.onToggleImportant}
                     onToggleLiked={this.onToggleLiked} />
