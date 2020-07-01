@@ -1,5 +1,6 @@
 .app-list-item {
   font-size: 1.25rem;
+  
 }
 
 .app-list-item button {
@@ -47,7 +48,7 @@
 }
 
 .app-list-item.important .app-list-item-label {
-  color: #FFD700;
+  color: #0466c2;
 }
 
 .app-list-item.important .btn-star {

@@ -8,7 +8,7 @@ const Header = styled.div`
     justify-content: space-between;
     cursor: pointer;
     h1{
-        font-size: 26px;
+        font-size: 36px;
         color: whitesmoke;
         :hover{
             color: black

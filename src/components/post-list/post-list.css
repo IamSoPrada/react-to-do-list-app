@@ -4,5 +4,9 @@
 .app-list .list-group-item {
   padding: 20px 35px 10px 35px;
   margin-top: 10px;
+  border: 2px solid #333333;
   border-radius: 25px;
+  -webkit-box-shadow: inset 0px -2px 33px -14px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 0px -2px 33px -14px rgba(0,0,0,0.75);
+  box-shadow: inset 0px -2px 33px -14px rgba(0,0,0,0.75);
 }
