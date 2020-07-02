@@ -5,7 +5,7 @@ export default class PostAddForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: ""
+            text: "" 
         }
         this.onValueChange = this.onValueChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -19,10 +19,15 @@ export default class PostAddForm extends Component {
 
     onSubmit(event) {
         event.preventDefault();
-        this.props.onAdd(this.state.text)
-        this.setState({
-            text: ""
-        })
+        if(this.state.text === ""){
+            alert("Вы пытаетесь отправить пустую строку, пожалуйста, введите название задачи.")
+        } else{
+            this.props.onAdd(this.state.text)
+            this.setState({
+                text: ""
+            })
+        }
+
     }
     render() {
         return (
